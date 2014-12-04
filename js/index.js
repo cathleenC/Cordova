@@ -101,24 +101,45 @@ function route() {
 
          case "#allqueues":
             $.get('js/templates.html', function(templates) {
-                var template = $(templates).filter('#tpl-queues-allqueues').html();
-                page = Mustache.render(template, allqueues);
-                document.getElementById("container").innerHTML = page;
+                var template = $(templates).filter('#tpl-allqueues').html();
+                $.getJSON("http://api-ticketeo.herokuapp.com/queue_models.json", function(objets) {
+                    page = Mustache.render(template, objets[0]);
+                    console.log(objets[0]);
+                    document.getElementById("container").innerHTML = page;
+                });
             }, 'html');
             break; 
-
+            
          case "#queues":
             $.get('js/templates.html', function(templates) {
-                var template = $(templates).filter('#tpl-queues-allqueues').html();
-                page = Mustache.render(template, queues);
-                document.getElementById("container").innerHTML = page;
+                var template = $(templates).filter('#tpl-allqueues').html();
+                $.getJSON("http://api-ticketeo.herokuapp.com/queue_models.json", function(objets) {
+                    page = Mustache.render(template, objets[0]);
+                    console.log(objets[0]);
+                    document.getElementById("container").innerHTML = page;
+                });
             }, 'html');
             break;
 
         case "#aqueue":
             $.get('js/templates.html', function(templates) {
-                var page = $(templates).filter('#tpl-aqueue').html();
-                $('#container').html(page); // with jQuery
+               var template = $(templates).filter('#tpl-queues').html();
+                var param=sessionStorage['id'];
+
+                $.getJSON("http://api-ticketeo.herokuapp.com/queue_models/"+param+".json", function(objets) {
+                    page = Mustache.render(template, objets[0]);
+                    console.log(objets[0]);
+                    document.getElementById("container").innerHTML = page;
+                });
+                document.getElementById("container").innerHTML = page;
+            }, 'html');
+            break;
+
+        case "#gps":
+            $.get('js/templates.html', function(templates) {
+                page = $(templates).filter('#tpl-gps').html();
+                document.getElementById("container").innerHTML = page;
+                //slider.slidePage($(page));
             }, 'html');
             break;
  
