@@ -8,7 +8,7 @@ var allqueues = {
             "nom": "Administration",
             "url": "#administration"
         },
-        
+        {
             "nom": "Loisir",
             "url": "#loisir"
         }
@@ -25,7 +25,7 @@ var queues = {
             "nom": "Administration",
             "url": "#administration"
         },
-        
+        {
             "nom": "Loisir",
             "url": "#loisir"
         }
