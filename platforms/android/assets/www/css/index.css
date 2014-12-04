@@ -1,0 +1,81 @@
+/*
+#container {
+    min-height: 100%;
+    position: relative;
+}
+#contenu {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.mon_menu {
+    /* list-style: none outside none; */
+    padding: 0px;
+    /*background-color:red;*/
+}
+
+.mon_bouton {
+    background-color: #f2f2f2;
+    font-variant: small-caps; 
+    margin: 5px; 
+    padding: 20px;
+}
+
+/*
+.mon_bouton:active {
+    background-color: black;
+    color: #ffffff;
+    text-decoration: none !important;
+}*/
+
+.mon_icone_vente {
+    margin-right: 10px;
+    vertical-align: -30%;
+}
+.mon_icone_achat {
+    margin-right: 10px;
+    vertical-align: -30%;
+}
+.mon_icone_usager {
+    margin-right: 10px;
+    vertical-align: -15%;
+}
+.mon_icone_back {
+    border: 0 none;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+/*Pour mon_profil.html */
+
+.modal_profil {
+    clear: both;
+    margin-left: 10px;
+    min-width: 340px;
+}
+.modal_photo {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.modal_photo img {
+    width: 110px;
+}
+.modal_label {
+    display: block;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+    width: 150px;
+}
+.modal_zone_info {
+    background-color: #f2f2f2;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: justify;
+    width: 400px;
+}
+.modal_zone_info_titre {
+    color: #747474;
+    font-weight: bold;
+}
