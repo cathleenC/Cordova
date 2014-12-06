@@ -9,16 +9,15 @@
                     <a href="#queues">Mes queues</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#profil">Mon profil</a>
-                </li>
-                <li class="list-group-item">
                     <a href="#gps">Mes coordonnées gps</a>
                 </li>
+                <li class="list-group-item">
+                    <a href="#profil" class="btn btn-default">Inscription</a>
+                    <a href="#login" class="btn btn-default">Connexion</a>
+                </li>
             </ul>
-
-            <div id="map" style="width:300px; height:450px"></div>
-        </div>
-    </div>
+            </div>
+            <div id="map" style="width:300px; height:450px"> </div>
 </script>
 
 
@@ -31,12 +30,13 @@
         <ul class="list-group">
         {{#.}}
         <li class="list-group-item">
-          <a href="#aqueue/{{ id }}">
+          <a href="#aqueue" onclick="sessionStorage['idQueue']='{{id}}'">
               <div class="media-body">
                   <p>{{name}}</p>
                   {{gps_lon}} {{gps_lat}}
               </div>
           </a>
+          <a href="#book" onclick="sessionStorage['idQueue']='{{id}}'" class="btn btn-default" >Faire la queue</a>
         </li>
         {{/.}}
     </ul>
@@ -65,14 +65,41 @@
     </div>
  </script>
 
-
 <script type="text/html" id="tpl-book">
     <div>
     <div>
      <h2>Page de réservation</h2>
     </div>
     </div>
- </script>
+</script>
+
+
+<script type="text/html" id="tpl-login">
+    <div>
+     <h2>Connexion</h2>
+    </div>
+    <div>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+          <label for="email" class="col-sm-2 control-label"> Nom
+          </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="email"
+              placeholder="Saisir votre email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-sm-2 control-label">
+            Email </label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="lpassword"
+              placeholder="Saisir votre mot de passe">
+          </div>
+        </div>
+      <input type="submit" value="Se connecter" id="submitButton">
+  </form>
+    </div>
+</script>
 
 
  <script type="text/html" id="tpl-aqueue">
@@ -104,12 +131,9 @@
 
  <script type="text/html" id="tpl-profil">
     <div>
-     <h2>Mon profil</h2>
+     <h2>Inscription</h2>
      <div class="modal_message_erreur_saisie"> </div>
     <div>
-    <button type="button" onClick="capturePhoto()" class="btn btn-primary btn-lg">Mettre
-      une photo</button>
-
     <div id="contenu">
       <form class="form-horizontal" role="form">
         <div class="form-group">

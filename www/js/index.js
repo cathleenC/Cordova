@@ -1,36 +1,3 @@
-var allqueues = {
-    "lesqueues": [
-        {
-            "nom": "Magasin",
-            "url": "#magasin"
-        },
-        {  
-            "nom": "Administration",
-            "url": "#administration"
-        },
-        {
-            "nom": "Loisir",
-            "url": "#loisir"
-        }
-    ]
-}
-
-var queues = {
-    "lesqueues": [
-        {
-            "nom": "Magasin",
-            "url": "#magasin"
-        },
-        {  
-            "nom": "Administration",
-            "url": "#administration"
-        },
-        {
-            "nom": "Loisir",
-            "url": "#loisir"
-        }
-    ]
-}
 
 $(document).ready(function() {
     $("#map").gmap3({
@@ -42,35 +9,7 @@ $(document).ready(function() {
          }});
 }); 
 
-//photo 
-$(document).ready(function() {
-    document.addEventListener("deviceready", onDeviceReady, false);
-    //for testing in Chrome browser uncomment
-    //onDeviceReady();
-});
- 
-var pictureSource;
-var destinationType;
- 
-function onDeviceReady() {
-    pictureSource = navigator.camera.PictureSourceType;
-    destinationType = navigator.camera.DestinationType;
-    navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge: 10000, timeout: 300000, enableHighAccuracy: true});
-}
- 
-function capturePhoto() {
-    navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 50});
-}
- 
-function onPhotoDataSuccess(imageData) {
-    var smallImage = document.getElementById('image');
-    smallImage.style.display = 'block';
-    smallImage.src = imageData;
-}
- 
-function onFail(message) {
-    alert('Failed to load picture because: ' + message);
-}
+
 
 //GPS
 function onSuccess(position) {
@@ -102,13 +41,6 @@ $(window).on('hashchange', route);
 function route() {
     var page, hash = window.location.hash;
     switch (hash) {
-        case "#profil":
-            $.get('js/templates.html', function(templates) {
-                var page = $(templates).filter('#tpl-profil').html();
-                $('#container').html(page); // with jQuery
-            }, 'html');
-            break;
-
          case "#allqueues":
             $.get('js/templates.html', function(templates) {
                 var template = $(templates).filter('#tpl-allqueues').html();
@@ -141,7 +73,6 @@ function route() {
                     console.log(objets);
                     document.getElementById("container").innerHTML = page;
                 });
-                document.getElementById("container").innerHTML = page;
             }, 'html');
             break;
 
@@ -150,12 +81,35 @@ function route() {
                var template = $(templates).filter('#tpl-book').html();
                 var param = sessionStorage['idQueue'];
 
-                $.post("http://api-ticketeo.herokuapp.com/queue_models/"+param+"/book.json", function(objets) {
+                $.post("http://api-ticketeo.herokuapp.com/queue_models/"+param+"/book.json", {"booking": {"user_id": ""}}, function(objets) {
                     page = Mustache.render(template, objets);
                     console.log(objets);
                     document.getElementById("container").innerHTML = page;
                 });
-                document.getElementById("container").innerHTML = page;
+            }, 'html');
+            break;
+
+        case "#login":
+            $.get('js/templates.html', function(templates) {
+                var template = $(templates).filter('#tpl-login').html();
+
+                $.post("http://api-ticketeo.herokuapp.com/.json", {"booking": {"user_id":"", "password":"" }}, function(objets) {
+                    page = Mustache.render(template, objets);
+                    console.log(objets);
+                    document.getElementById("container").innerHTML = page;
+                });
+            }, 'html');
+            break;
+
+         case "#profil":
+            $.get('js/templates.html', function(templates) {
+                var template = $(templates).filter('#tpl-profil').html();
+
+                $.post("http://api-ticketeo.herokuapp.com/users.json", {"user": {"username":"" ,"firstname":"" ,"lastname":"" ,"email":"", "password":""}}, function(objets) {
+                    page = Mustache.render(template, objets);
+                    console.log(objets);
+                    document.getElementById("container").innerHTML = page;
+                });
             }, 'html');
             break;
 
