@@ -112,7 +112,7 @@ function route() {
             
          case "#queues":
             $.get('js/templates.html', function(templates) {
-                var template = $(templates).filter('#tpl-allqueues').html();
+                var template = $(templates).filter('#tpl-queues').html();
                 $.getJSON("http://api-ticketeo.herokuapp.com/queue_models.json", function(objets) {
                     page = Mustache.render(template, objets[0]);
                     console.log(objets[0]);
@@ -123,7 +123,7 @@ function route() {
 
         case "#aqueue":
             $.get('js/templates.html', function(templates) {
-               var template = $(templates).filter('#tpl-queues').html();
+               var template = $(templates).filter('#tpl-aqueue').html();
                 var param=sessionStorage['id'];
 
                 $.getJSON("http://api-ticketeo.herokuapp.com/queue_models/"+param+".json", function(objets) {

@@ -1,13 +1,5 @@
 <script type="text/html" id="tpl-home">
-    <div>
-        <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#"> Ticketeo</a>
-        </div>
-    </nav>
-        <div>
-            <img src="http://www.google.fr/url?source=imglanding&ct=img&q=http://www.coloriages.fr/coloriages/coloriage-os-de-chien.jpg&sa=X&ei=zXR7VPPCApTlas3ngbgL&ved=0CAkQ8w&usg=AFQjCNG7btgNKSvKVEDGn9kdScHQmRHlEg" alt="chien" height="84" width="102" />
-        </div>
+
         <div>
             <ul class="list-group">
                 <li class="list-group-item">
@@ -30,60 +22,77 @@
 
 
 <script type="text/html" id="tpl-queues">
-    <div> 
-            <svg onclick="window.history.back();"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="pointer-events: none; display: block;" x="0px"
-                    y="0px" width="16px" height="16px" viewBox="0 0 42 42"
-                    xml:space="preserve"><g id="reply-all"><path d="M7,8V5l-7,7l7,7v-3l-4-4L7,8z M13,9V5l-7,7l7,7v-4.1c5,0,8.5,1.6,11,5.1C23,15,20,10,13,9z"></path></g></svg>
     <div>
-      <h1>Ticketeo</h1>
-    </div>
-        <img src="http://www.google.fr/url?source=imglanding&ct=img&q=http://www.coloriages.fr/coloriages/coloriage-os-de-chien.jpg&sa=X&ei=zXR7VPPCApTlas3ngbgL&ved=0CAkQ8wc&usg=AFQjCNG7btgNKSvKVEDGn9kdScHQmRHlEg" alt="chien" height="84" width="102" />
-      <div>
+    <div>
      <h2>Mes queues</h2>
-        </div>
     </div>
-</script>
-
-
- <script type="text/html" id="tpl-allqueues">
-    <div>
-         <svg onclick="window.history.back();"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="pointer-events: none; display: block;" x="0px"
-                    y="0px" width="16px" height="16px" viewBox="0 0 42 42"
-                    xml:space="preserve"><g id="reply-all"><path d="M7,8V5l-7,7l7,7v-3l-4-4L7,8z M13,9V5l-7,7l7,7v-4.1c5,0,8.5,1.6,11,5.1C23,15,20,10,13,9z"></path></g></svg>
-    <div>
-      <h1>Ticketeo</h1>
-    </div>
-      <img src="http://www.google.fr/url?source=imglanding&ct=img&q=http://www.coloriages.fr/coloriages/coloriage-os-de-chien.jpg&sa=X&ei=zXR7VPPCApTlas3ngbgL&ved=0CAkQ8wc&usg=AFQjCNG7btgNKSvKVEDGn9kdScHQmRHlEg" alt="chien" height="84" width="102" />
-      <div>
-     <h2>Toutes les queues</h2>
-        </div>
-        <ul class="table-view">
-        {{#each this}}
-        <li class="table-view-cell media">
-          <a href="#queue_model/{{ id }}">
+        <ul class="list-group">
+        {{#.}}
+        <li class="list-group-item">
+          <a href="#aqueue/{{ id }}">
               <div class="media-body">
                   <p>{{name}}</p>
                   {{gps_lon}} {{gps_lat}}
               </div>
           </a>
         </li>
-        {{/each}}
+        {{/.}}
     </ul>
+    </div>
+</script>
 
 
+ <script type="text/html" id="tpl-allqueues">
+    <div>
+    <div>
+     <h2>Toutes les queues</h2>
+    </div>
+        <ul class="list-group">
+        {{#.}}
+        <li class="list-group-item">
+          <a href="#aqueue/{{ id }}">
+              <div class="media-body">
+                  <p>{{name}}</p>
+                  {{gps_lon}} {{gps_lat}}
+              </div>
+          </a>
+          <a href="#aqueue/{{ id }}" class="btn btn-default">Faire la queue</a>
+        </li>
+        {{/.}}
+    </ul>
     </div>
  </script>
 
 
+ <script type="text/html" id="tpl-aqueue">
+     <div class="modal_photo">
+            <img src={{image}}>
+            <h3>{{name}}</h3>
+      </div>
+        
+        <div class="modal_profil modal_zone_info">
+      <p>Localisation :{{gps_lon}}, {{gps_lat}} </p>
+
+      <ul>
+           <li>{{description}}</li>
+      </ul>
+    </div>
+
+        <div class="modal_profil modal_zone_info">
+            <p>Client qui passe: {{num_customer}}</p>
+        </div>
+        <div class="modal_profil modal_zone_info">
+            <p>Dernier client à attendre : {{last_customer}}</p>
+        </div>
+      
+
+     <a href="#aqueue/{{ id }}" class="btn btn-default">Faire la queue</a>
+</div>
+</script>
+
+
  <script type="text/html" id="tpl-profil">
     <div>
-    <svg onclick="window.history.back();"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="pointer-events: none; display: block;" x="0px"
-                    y="0px" width="16px" height="16px" viewBox="0 0 42 42"
-                    xml:space="preserve"><g id="reply-all"><path d="M7,8V5l-7,7l7,7v-3l-4-4L7,8z M13,9V5l-7,7l7,7v-4.1c5,0,8.5,1.6,11,5.1C23,15,20,10,13,9z"></path></g></svg>
-    <div>
-        <h1>Ticketeo</h1>
-    </div>
-      <img src="http://www.google.fr/url?source=imglanding&ct=img&q=http://www.coloriages.fr/coloriages/coloriage-os-de-chien.jpg&sa=X&ei=zXR7VPPCApTlas3ngbgL&ved=0CAkQ8wc&usg=AFQjCNG7btgNKSvKVEDGn9kdScHQmRHlEg" alt="chien" height="84" width="102" />
      <h2>Mon profil</h2>
      <div class="modal_message_erreur_saisie"> </div>
     <div>
@@ -140,55 +149,9 @@
  </script>
 
 
-
-
-<script type="text/html" id="tpl-aqueue">
-    <img onclick="window.history.back();" class="mon_icone_back" src="svg/back.svg" width="20">
-
-      <h1>Ticketeo</h1>
-
-      <img src="http://www.google.fr/url?source=imglanding&ct=img&q=http://www.coloriages.fr/coloriages/coloriage-os-de-chien.jpg&sa=X&ei=zXR7VPPCApTlas3ngbgL&ved=0CAkQ8wc&usg=AFQjCNG7btgNKSvKVEDGn9kdScHQmRHlEg" alt="chien" height="84" width="102" />
-
-     <div class="modal_photo">
-            <img src={{image}}>
-            <h3>{{name}}</h3>
-      </div>
-        
-        <div class="modal_profil modal_zone_info">
-      <p>Localisation :{{gps_lon}}, {{gps_lat}} </p>
-
-      <ul>
-           <li>{{description}}</li>
-      </ul>
-    </div>
-
-        <div class="modal_profil modal_zone_info">
-            <p>Client qui passe: {{num_customer}}</p>
-        </div>
-        <div class="modal_profil modal_zone_info">
-            <p>Dernier client à attendre : {{last_customer}}</p>
-        </div>
-      
-
-     <button type="button" class="btn btn-primary btn-lg btn-block">
-    Faire la queue</button>
- 
-</div>
-</script>
-
  <script type="text/html" id="tpl-gps">
 
 <div>
-
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="navbar-header">
-      <a class="navbar-brand" version="1.1">
-        <img onclick="window.history.back();" class="mon_icone_back" src="svg/back.svg" width="20">
-        Ticketeo
-      </a>
-    </div>
-  </nav>
-  
   <div class="scroller">
     <p id="geolocation">Recherche des coordonnées GPS en cours...</p>
   <div>
