@@ -15,6 +15,8 @@
                     <a href="#gps">Mes coordonnées gps</a>
                 </li>
             </ul>
+
+            <div id="map" style="width:300px; height:450px"></div>
         </div>
     </div>
 </script>
@@ -50,16 +52,25 @@
         <ul class="list-group">
         {{#.}}
         <li class="list-group-item">
-          <a href="#aqueue/{{ id }}">
+          <a href="#aqueue" onclick="sessionStorage['idQueue']='{{id}}'">
               <div class="media-body">
                   <p>{{name}}</p>
                   {{gps_lon}} {{gps_lat}}
               </div>
           </a>
-          <a href="#aqueue/{{ id }}" class="btn btn-default">Faire la queue</a>
+          <a href="#book" onclick="sessionStorage['idQueue']='{{id}}'" class="btn btn-default" >Faire la queue</a>
         </li>
         {{/.}}
     </ul>
+    </div>
+ </script>
+
+
+<script type="text/html" id="tpl-book">
+    <div>
+    <div>
+     <h2>Page de réservation</h2>
+    </div>
     </div>
  </script>
 

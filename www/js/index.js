@@ -32,7 +32,17 @@ var queues = {
     ]
 }
 
-//photo
+$(document).ready(function() {
+    $("#map").gmap3({
+         map:{
+         options:{
+         center: [45, 0],
+         zoom: 12
+         }
+         }});
+}); 
+
+//photo 
 $(document).ready(function() {
     document.addEventListener("deviceready", onDeviceReady, false);
     //for testing in Chrome browser uncomment
@@ -103,8 +113,8 @@ function route() {
             $.get('js/templates.html', function(templates) {
                 var template = $(templates).filter('#tpl-allqueues').html();
                 $.getJSON("http://api-ticketeo.herokuapp.com/queue_models.json", function(objets) {
-                    page = Mustache.render(template, objets[0]);
-                    console.log(objets[0]);
+                    page = Mustache.render(template, objets);
+                    console.log(objets);
                     document.getElementById("container").innerHTML = page;
                 });
             }, 'html');
@@ -114,8 +124,8 @@ function route() {
             $.get('js/templates.html', function(templates) {
                 var template = $(templates).filter('#tpl-queues').html();
                 $.getJSON("http://api-ticketeo.herokuapp.com/queue_models.json", function(objets) {
-                    page = Mustache.render(template, objets[0]);
-                    console.log(objets[0]);
+                    page = Mustache.render(template, objets);
+                    console.log(objets);
                     document.getElementById("container").innerHTML = page;
                 });
             }, 'html');
@@ -124,11 +134,25 @@ function route() {
         case "#aqueue":
             $.get('js/templates.html', function(templates) {
                var template = $(templates).filter('#tpl-aqueue').html();
-                var param=sessionStorage['id'];
+                var param = sessionStorage['idQueue'];
 
                 $.getJSON("http://api-ticketeo.herokuapp.com/queue_models/"+param+".json", function(objets) {
-                    page = Mustache.render(template, objets[0]);
-                    console.log(objets[0]);
+                    page = Mustache.render(template, objets);
+                    console.log(objets);
+                    document.getElementById("container").innerHTML = page;
+                });
+                document.getElementById("container").innerHTML = page;
+            }, 'html');
+            break;
+
+        case "#book":
+            $.get('js/templates.html', function(templates) {
+               var template = $(templates).filter('#tpl-book').html();
+                var param = sessionStorage['idQueue'];
+
+                $.post("http://api-ticketeo.herokuapp.com/queue_models/"+param+"/book.json", function(objets) {
+                    page = Mustache.render(template, objets);
+                    console.log(objets);
                     document.getElementById("container").innerHTML = page;
                 });
                 document.getElementById("container").innerHTML = page;
