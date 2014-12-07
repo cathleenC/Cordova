@@ -1,5 +1,5 @@
 function checkInputData() {
-	var inElement=document.getElementById("telephone");
+	var inElement=document.getElementById("email");
 	var alertElements=document.getElementsByClassName("modal_message_erreur_saisie");
  
 	var errorText="";
@@ -13,7 +13,7 @@ function checkInputData() {
 		errorText="(trop court)";
 		isValid=false;
 	}	
-	else if(checkNumberValidity(inElement.value)==false) {
+	else if(checkMailValidity(inElement.value)==false) {
 		errorText="(non valide)"+errorText;
 		isValid=false;
 	}
@@ -33,10 +33,11 @@ function checkInputData() {
 			msg.innerHTML="Erreur de saisie: assurez vous d'avoir bien saisi toutes les donn&eacutees";
 		}
 	}
+	return isValid;
 }
  
-function checkNumberValidity(num_tel) {
-	var regex = new RegExp(/^(01|02|03|04|05|06|08|09)[0-9]{8}/gi);
+function checkMailValidity(num_tel) {
+	var regex = new RegExp(/^.*@.*\..*/gi);
  
 	var match = false;
 	if(regex.test(num_tel)) {

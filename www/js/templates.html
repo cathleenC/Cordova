@@ -17,7 +17,7 @@
                 </li>
             </ul>
             </div>
-            <div id="map" style="width:300px; height:450px"> </div>
+          <div id="map" style="width:300px; height:450px"> </div>
 </script>
 
 
@@ -66,10 +66,25 @@
  </script>
 
 <script type="text/html" id="tpl-book">
-    <div>
-    <div>
-     <h2>Page de réservation</h2>
+    <div class="modal_photo">
+            <img src={{image}}>
+            <h3>{{name}}</h3>
+      </div>
+        
+        <div class="modal_profil modal_zone_info">
+      <p>Localisation :{{gps_lon}}, {{gps_lat}} </p>
+
+      <ul>
+           <li>{{description}}</li>
+      </ul>
     </div>
+
+        <div class="modal_profil modal_zone_info">
+            <p>Client qui passe: {{num_customer}}</p>
+        </div>   
+        <div class="modal_profil modal_zone_info">
+            <p>Vous êtes le client : {{num}}</p>
+        </div>
     </div>
 </script>
 
@@ -79,28 +94,35 @@
      <h2>Connexion</h2>
     </div>
     <div>
-    <form class="form-horizontal" role="form">
+    <form id="logForm" class="form-horizontal" role="form" onSubmit="LogForm()" method="post">
         <div class="form-group">
-          <label for="email" class="col-sm-2 control-label"> Nom
+          <label for="email" class="col-sm-2 control-label"> Email
           </label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="email"
+            <input type="text" class="form-control" name="email"
               placeholder="Saisir votre email">
           </div>
         </div>
         <div class="form-group">
           <label for="password" class="col-sm-2 control-label">
-            Email </label>
+            Mot de passe </label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="lpassword"
+            <input type="password" class="form-control" name="password"
               placeholder="Saisir votre mot de passe">
           </div>
         </div>
-      <input type="submit" value="Se connecter" id="submitButton">
+      <input type="submit" value="Se connecter" id="submitButton" >
   </form>
     </div>
 </script>
 
+<script type="text/html" id="tpl-logged">
+    <div>
+     <h2>Vous êtes connecté</h2>
+    </div>
+    <div>
+    </div>
+</script>
 
  <script type="text/html" id="tpl-aqueue">
      <div class="modal_photo">
@@ -124,7 +146,7 @@
         </div>
       
 
-     <a href="#aqueue/{{ id }}" class="btn btn-default">Faire la queue</a>
+     <a href="#book" class="btn btn-default">Faire la queue</a>
 </div>
 </script>
 
@@ -134,63 +156,70 @@
      <h2>Inscription</h2>
      <div class="modal_message_erreur_saisie"> </div>
     <div>
-    <div id="contenu">
-      <form class="form-horizontal" role="form">
+    <div id="contenu" >
+      <form id="subscriptForm" class="form-horizontal" role="form" onSubmit="sendSubscript()" method="post">
         <div class="form-group">
-          <label for="firstname" class="col-sm-2 control-label"> Nom
+          <label for="username" class="col-sm-2 control-label">
+            Nom utilisateur</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="username"
+              placeholder="Votre nom d'utilisateur">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="firstname" class="col-sm-2 control-label"> Prénom
           </label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="firstname"
+            <input type="text" class="form-control" name="firstname"
               placeholder="Saisir votre nom de famille">
           </div>
         </div>
         <div class="form-group">
           <label for="lastname" class="col-sm-2 control-label">
-            Prénom </label>
+            Nom </label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="lastname"
+            <input type="text" class="form-control" name="lastname"
               placeholder="Saisir votre prenom">
           </div>
         </div>
-
         <div class="form-group">
-          <label for="telephone" class="col-sm-2 control-label">
-            Téléphone </label>
+          <label for="email" class="col-sm-2 control-label">
+            Email </label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="telephone" placeholder="0XXXXXXXXX">
+            <input type="text" class="form-control" name="email" placeholder="Saisir votre adresse mail">
             <div class="col-sm-3" id="check_number_message"> 
-            (saisissez 10 chiffres, sans espaces) 
           </div>
           </div>
         </div>
         <div class="form-group">
-          <label for="ville" class="col-sm-2 control-label">
-            Localisation </label>
+          <label for="password" class="col-sm-2 control-label">
+            Mot de passe</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" id="ville"
-              placeholder="votre ville">
+            <input type="password" class="form-control" name="password"
+              placeholder="Votre password">
           </div>
         </div>
-
+        <input type="submit" value="Inscription" id="submitButton" >
       </form>
       </div>
-      <button type="button" onClick="checkInputData()"class="btn btn-primary btn-lg btn-block">
-        Modifier mon profil
-      </button>
 
       <div class="modal_message_erreur_saisie"> </div>
      </div>
     </div>
  </script>
 
+<script type="text/html" id="tpl-subscribed">
+    <div>
+    <div>
+     <h2>Inscription faite</h2>
+    </div>
+    </div>
+</script>
 
  <script type="text/html" id="tpl-gps">
-
 <div>
   <div class="scroller">
     <p id="geolocation">Recherche des coordonnées GPS en cours...</p>
   <div>
-
 </div>
-
  </script>
